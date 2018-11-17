@@ -1,0 +1,59 @@
+body {
+    text-align: center;
+    background-color: black;
+    background-size: contain;
+ }
+ #container {
+     background-color: gray;
+     width: 90%;
+     min-height: 100%;
+     margin: auto;
+     border-radius: 10px;
+ }
+ 
+ header {
+     font-size: 40px;
+     font-weight: 450;
+     color: antiquewhite;
+ }
+ 
+ #button-display {
+   margin-top: 10px;
+ }
+ button {
+     margin: 3px;
+     background-color: whitesmoke;
+     border-radius: 5px;
+     padding: 3px 10px 3px 10px;
+     font-weight: 400
+ }
+ .gif_div {
+     float: left;
+     padding: 10px;
+ }
+ 
+ form {
+     padding: 10px;
+     font-size:20px;
+     font-weight: 400;
+ }
+ 
+ input{
+     margin: 5px;
+ }
+ 
+ #new-animal {
+     width: 90%;
+     margin-left: 0px;
+ }
+ 
+ #gif-text {
+     font-size: 25px;
+     font-weight: 400;
+     margin: 5px;
+ }
+ 
+ p {
+     font-size: 20px;
+ }
+ 
