@@ -6,6 +6,7 @@
     <title>Project 1</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
    <link rel="stylesheet" href="/Project-1/style.css">
 </head>
 <body>
@@ -24,19 +25,18 @@
                              <form>
                                     <div class="form-group">
                                       <label for="exampleFormControlInput1">Name</label>
-                                      <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="name">
+                                      <input type="name" class="form-control" id="input-name" placeholder="name">
                                     </div>
                                     <div class="form-group">
                                             <label for="exampleFormControlInput2">Email</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
                                           </div>
                                     <div class="form-group">
                                             <label for="exampleFormControlInput3">Favorite Team</label>
-                                            <input type="team" class="form-control" id="exampleFormControlInput3" placeholder="favorite team">
+                                            <input type="team" class="form-control" id="input-team" placeholder="favorite team">
                                         </div>
                                   </form> 
-                                  <button type="button" class="btn btn-secondary">Submit</button>
-                                  <button type="button" class="btn btn-secondary">Reset</button>
+                                  <button type="button" class="btn btn-secondary" id="submit-info">Submit</button>
                           <img src="https://cdn.shopify.com/s/files/1/0257/6087/products/Denver-Nuggets_Single_Front_85c50530-c412-421c-b036-d765ba584abf.png?v=1524765768" alt="logo">          
                           </div>
                           <div class="col-sm">
