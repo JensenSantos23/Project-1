@@ -3,15 +3,22 @@
     padding-top: 1%;
     outline-style: solid;
     outline-color: black;
-    background-image: url("https://161804-467882-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2016/06/bigstock-Basketball-background-95906249.jpg");
+    background-image: url("http://game2basketballhk.com/wp-content/uploads/2014/09/UK_Basketball_Live_Background_1080p.jpg");
     background-repeat: no-repeat;
-    background-size: 100%, 50%;
-           }
+    background-position: 0%, 0%;
+            }
 
 .col-sm {
    outline-style: solid;
     outline-color: black;
     margin: 5pt;
+    background-position: 0%, 0%;
+    background-image:url("http://game2basketballhk.com/wp-content/uploads/2014/09/UK_Basketball_Live_Background_1080p.jpg");
+    font-weight: bold;
+    color: black;
+}
+
+#scores {
     background-color: white;
 }
 
@@ -20,17 +27,61 @@ body {
    }
 
 #logo {
-    height: 100px;
-    width: 70px;
     margin-top: 0%;
-}
+    mix-blend-mode: multiply;
+    height: 150px;
+    width: 150px;
+    }
 
 .display-4 {
     font-family: Impact;
     font-stretch: extra-expanded;
-    color: white;
+    color: black;
 }
 
-.lead {
-    color: white;
+.form-control {
+    box-shadow: 0 0 10px black;
 }
+
+.list-group {
+    outline-style: solid;
+    outline-color: black;
+    margin-top: 3%;
+    background-position: 0%, 0%;
+    background-image:url("http://game2basketballhk.com/wp-content/uploads/2014/09/UK_Basketball_Live_Background_1080p.jpg");
+    }
+
+
+.footer {
+    outline-style: solid;
+    outline-color: black;
+    margin-top: 3%;
+    background-position: 0%, 0%;
+    background-image:url("http://game2basketballhk.com/wp-content/uploads/2014/09/UK_Basketball_Live_Background_1080p.jpg");
+    text-align: center;
+}
+
+.btn-secondary {
+    margin: 2%;
+    box-shadow: 0 0 10px black;
+}
+
+.col-12 {
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+    background-color: white; 
+}
+
+.list-group-item {
+    box-shadow: 0 0 10px black;
+}
+
+.col-lg {
+    outline-style: solid;
+    outline-color: black;
+    background-position: 0%, 0%;
+    background-image:url("http://game2basketballhk.com/wp-content/uploads/2014/09/UK_Basketball_Live_Background_1080p.jpg"); 
+    margin-top: 3%;
+    padding-bottom: 2%;
+}
+
