@@ -1,29 +1,36 @@
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyCpoukjeJfzglcf4glOHg2uuNbo9Ni8I9E",
-    authDomain: "bootcamp-2cbb6.firebaseapp.com",
-    databaseURL: "https://bootcamp-2cbb6.firebaseio.com",
-    projectId: "bootcamp-2cbb6",
-    storageBucket: "bootcamp-2cbb6.appspot.com",
-    messagingSenderId: "150206119197"
-  };
-  firebase.initializeApp(config);
+//Capture Button Click
+$("#add-user").on("click", function(event) {
+    // prevent form from trying to submit/refresh the page
+    event.preventDefault();
+
+    // Capture User Inputs and store them into variables
+    var name = $("#name-input").val().trim();
+    var email = $("#email-input").val().trim();
+    var team = $("#team-input").val().trim();
+    
+    // Console log each of the user inputs to confirm we are receiving them
+    console.log(name);
+    console.log(email);
+    console.log(team);
+
+    // Output all of the new information into the relevant HTML sections
+    $("#name-display").text(name);
+    $("#email-display").text(email);
+    $("#team-display").text(team);
+
+    // Clear localStorage
+    localStorage.clear();
+
+    // Store all content into localStorage
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("team", team);
+    
+
+  // By default display the content from localStorage
+  $("#name-display").text(localStorage.getItem("name"));
+  $("#email-display").text(localStorage.getItem("email"));
+  $("#team-display").text(localStorage.getItem("team"));
   
-  var database = firebase.database();
 
-  var name = ""
-  var email = ""
-  var team = ""
-
-  database.ref().on("value", function(snapshot){
-    console.log(snapshot.val())
-
-  })
-
-  $("#submit-info").on("click", function(event) {
-      event.preventDefault();
-
-    name = $("#name-input").val().trim()
-    email = $("#email-input").val().trim()
-    team = $("#team-input").val().trim()
-  })
+});    
