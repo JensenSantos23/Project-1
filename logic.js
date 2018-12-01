@@ -20,9 +20,13 @@ $("#submit-button").on("click", function(event) {
       }).then(function(response) {
        console.log(response);
       $("#ticket-info").html(response.events[0].title);
-      $("#ticket-info2").append(response.events[0].url);
-      $("#ticket-info3").append(response.events[0].venue.address);
-      
+      $("#ticket-info1").append(response.events[0].url);
+      $("#ticket-info2").append(response.events[0].venue.address);
+
+      var imgURL = response.events[0].performers[1].image;
+      var image = $("<img>").attr("src", imgURL);
+      $("#ticket-info3").append(image);
+
       });
 
     // Output all of the new information into the relevant HTML sections
