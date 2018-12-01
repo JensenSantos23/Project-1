@@ -20,7 +20,11 @@ $("#submit-button").on("click", function(event) {
       }).then(function(response) {
        console.log(response);
       $("#ticket-info").html(response.events[0].title);
-      $("#ticket-info1").append(response.events[0].url);
+
+      var eventURL = response.events[0].url;
+      var event = $("<a>").attr("href", eventURL).text("Buy Tickets for the Next Game")
+      $("#ticket-info1").append(event);
+      
       $("#ticket-info2").append(response.events[0].venue.address);
 
       var imgURL = response.events[0].performers[1].image;
