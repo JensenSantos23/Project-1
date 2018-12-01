@@ -19,9 +19,10 @@ $("#submit-button").on("click", function(event) {
        url: queryURL
       }).then(function(response) {
        console.log(response);
-      console.log(response.events[0].title);
+      $("#ticket-info").html(response.events[0].title);
+      $("#ticket-info2").append(response.events[0].url);
+      $("#ticket-info3").append(response.events[0].venue.address);
       
-
       });
 
     // Output all of the new information into the relevant HTML sections
