@@ -75,14 +75,19 @@ body {
 }
 
 .col-12 {
-    box-shadow: 0 0 10px black;
+    /* box-shadow: 0 0 10px black; */
     border-radius: 5px;
     background-color: white; 
     color: black;
-    font-weight: 100;
-    /* background-image: url("http://www.kostivere.ee/wp-content/uploads/2015/01/cool-basketball-wallpaper-41592-42568-hd-wallpapers.jpg"); */
-}
+    font-weight: 150px;
+    margin: 10px;
+    justify-content: center;
+           /* background-image: url("http://www.kostivere.ee/wp-content/uploads/2015/01/cool-basketball-wallpaper-41592-42568-hd-wallpapers.jpg"); */
+} */
 
+#ticket-info3 {
+    justify-content: center;
+}
 .list-group-item {
     box-shadow: 0 0 10px black;
 }
