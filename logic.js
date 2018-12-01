@@ -25,7 +25,7 @@ $("#submit-button").on("click", function(event) {
       var event = $("<a>").attr("href", eventURL).text("Buy Tickets for the Next Game")
       $("#ticket-info1").append(event);
       
-      $("#ticket-info2").append(response.events[0].venue.address);
+      $("#ticket-info2").append(response.events[0].venue.name);
 
       var imgURL = response.events[0].performers[1].image;
       var image = $("<img>").attr("src", imgURL);
