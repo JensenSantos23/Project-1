@@ -1,7 +1,9 @@
 .jumbotron {
     background: transparent;
     }
-
+#search-btn {
+  margin-top: 10px;
+}
 #search {
   min-height: 25px;
 }    
