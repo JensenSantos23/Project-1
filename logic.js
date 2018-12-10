@@ -23,11 +23,12 @@ jQuery(document).ready(function( $ ) {
   });
 });
 
-//Capture Button Click
-$("#submit-button").on("click", function(event) {
+ //Capture Button Click
+ $("#submit-button").on("click", function(event) {
     // prevent form from trying to submit/refresh the page
-    event.preventDefault();
+     event.preventDefault();
 
+	
     // Capture User Inputs and store them into variables
     var name = $("#name-input").val();
     var email = $("#email-input").val();
@@ -244,44 +245,154 @@ function bounceOut(x) {
 
  });
 
-
- function tplawesome(e,t){res=e;for(var n=0;n<t.length;n++){res=res.replace(/\{\{(.*?)\}\}/g,function(e,r){return t[n][r]})}return res}
-
-$(function() {
-    $("form").on("submit", function(e) {
-       e.preventDefault();
-       // prepare the request
-       var request = gapi.client.youtube.search.list({
-            part: "snippet",
-            type: "video",
-            q: encodeURIComponent($("#search").val()).replace(/%20/g, "+"),
-            maxResults: 3,
-            order: "viewCount",
-            publishedAfter: "2015-01-01T00:00:00Z"
-       }); 
-       // execute the request
-       request.execute(function(response) {
-          var results = response.result;
-          $("#results").html("");
-          $.each(results.items, function(index, item) {
-            $.get("tpl/item.html", function(data) {
-                $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
-            });
-          });
-          resetVideoHeight();
-       });
-    });
-    
-    $(window).on("resize", resetVideoHeight);
+ //search bar onFocus and onBlur animations
+ $(function () {
+	var searchField = $("#query");
+	var icon = $("#search-btn");
+	$("#search-form").submit(function (event) {
+			event.preventDefault();
+	});
+	//focus event
+	searchField.on("focus", function () {
+			$(this).animate({
+					width: "100%"
+			}, 400);
+			icon.animate({
+					right: "10px"
+			}, 400);
+	});
+	//blur event
+	searchField.on("blur", function () {
+			if (searchField.val() == "") {
+					searchField.animate({
+							width: "45%"
+					}, 400);
+					icon.animate({
+							right: "360px"
+					}, 400);
+			}
+	});
 });
-
-function resetVideoHeight() {
-    $(".video").css("height", $("#results").width() * 9/16);
+//search bar "search" functionality
+function search() {
+	//clear prev form results
+	$("#results").html("");
+	$("#buttons").html("");
+	//get input from form
+	var q = $("#query").val();
+	//run "GET" request for the Youtube API
+	$.get(
+			"https://www.googleapis.com/youtube/v3/search", {
+					part: "snippet, id",
+					q: q,
+					type: "video",
+					key: "AIzaSyAcXtwKJ7xtmb2E2tPUE46GuvDzx0ygses"
+			},
+			function (data) {
+					var nextPageToken = data.nextPageToken;
+					var prevPageToken = data.prevPageToken;
+					//log data
+					console.log(data);
+					$.each(data.items, function (i, item) {
+							//get output
+							var output = getOutput(item);
+							//display results
+							$("#results").append(output);
+					});
+					var buttons = getButtons(prevPageToken, nextPageToken);
+					//display buttons
+					$("#buttons").append(buttons);
+			}
+	);
 }
-
-function init() {
-    gapi.client.setApiKey("AIzaSyAdQ_6q7UX84hbnsqinUsPG6mkZ7y6nNk8");
-    gapi.client.load("youtube", "v3", function() {
-        // yt api is ready
-    });
+//prev page function
+function prevPage() {
+	var token = $("#prev-button").data("token");
+	var q = $("#prev-button").data("query");
+	//clear prev form results
+	$("#results").html("");
+	$("#buttons").html("");
+	//run "GET" request for the Youtube API
+	$.get(
+			"https://www.googleapis.com/youtube/v3/search", {
+					part: "snippet, id",
+					q: q,
+					type: "video",
+					pageToken: token,
+					key: "AIzaSyAcXtwKJ7xtmb2E2tPUE46GuvDzx0ygses"
+			},
+			function (data) {
+					var nextPageToken = data.nextPageToken;
+					var prevPageToken = data.prevPageToken;
+					//log data
+					console.log(data);
+					$.each(data.items, function (i, item) {
+							//get output
+							var output = getOutput(item);
+							//display results
+							$("#results").append(output);
+					});
+					var buttons = getButtons(prevPageToken, nextPageToken);
+					//display buttons
+					$("#buttons").append(buttons);
+			}
+	);
 }
+//next page function
+function nextPage() {
+	var token = $("#next-button").data("token");
+	var q = $("#next-button").data("query");
+	//clear prev form results
+	$("#results").html("");
+	$("#buttons").html("");
+	//run "GET" request for the Youtube API
+	$.get(
+			"https://www.googleapis.com/youtube/v3/search", {
+					part: "snippet, id",
+					q: q,
+					type: "video",
+					pageToken: token,
+					key: "AIzaSyBvL9FytrqumUi2IT6cktcJs2bTbm621wU  "
+			},
+			function (data) {
+					var nextPageToken = data.nextPageToken;
+					var prevPageToken = data.prevPageToken;
+					//log data
+					console.log(data);
+					$.each(data.items, function (i, item) {
+							//get output
+							var output = getOutput(item);
+							//display results
+							$("#results").append(output);
+					});
+					var buttons = getButtons(prevPageToken, nextPageToken);
+					//display buttons
+					$("#buttons").append(buttons);
+			}
+	);
+}
+//build output
+function getOutput(item) {
+	var videoId = item.id.videoId;
+	var title = item.snippet.title;
+	var description = item.snippet.description;
+	var thumb = item.snippet.thumbnails.high.url;
+	var channelTitle = item.snippet.channelTitle;
+	var videoDate = item.snippet.publishedAt;
+	//output string variable
+	var output = "<li>" + "<div class='list-left'>" + "<img src='" + thumb + "'>" + "</div>" + "<div class='list-right'>" + "<h3 class='vTitle'><a class='fancybox fancybox.iframe' href='http://www.youtube.com/embed/" + videoId + "'>" + title + "</a></h3>" + "<small>By <span class='cTitle'>" + channelTitle + "</span> on " + videoDate + "</small>" + "<p>" + description + "</p>" + "</div>" + "</li>" + "<div class='clearBoth'></div>" + "";
+	return output;
+}
+//build buttons
+// function getButtons(prevPageToken, nextPageToken) {
+// 	var q = $("#query").val();
+// 	if (!prevPageToken) {
+// 			var btnoutput = "<div class='button-container'>" +
+// 					"<button id='next-button' class='page-button' data-token='" + nextPageToken + "' data-query='" + q + "' onclick='nextPage();'>Next Page</button></div>";
+// 	} else {
+// 			var btnoutput = "<div class='button-container'>" +
+// 					"<button id='prev-button' class='page-button' data-token='" + prevPageToken + "' data-query='" + q + "' onclick='prevPage();'>Prev Page</button>" +
+// 					"<button id='next-button' class='page-button' data-token='" + nextPageToken + "' data-query='" + q + "' onclick='nextPage();'>Next Page</button></div>";
+// 	}
+// 	return btnoutput;
+// }
